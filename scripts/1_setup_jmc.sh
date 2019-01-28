@@ -9,6 +9,11 @@ fi
 # clone the jmc repo
 hg clone $JMC_REPO $JMC_ROOT || { exit 1; };
 
+# import proposed patch for jmc-6370
+cd $JMC_ROOT
+hg import --no-commit ../patches/jmc-6370.diff
+cd ../
+
 # setup the p2 repository
 mvn p2:site -f $JMC_THIRD_PARTY/pom.xml || { exit 1; };
 
